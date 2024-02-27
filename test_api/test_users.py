@@ -16,7 +16,16 @@ class TestUsers:
 
     def test_single_user_not_found(self):
         response = requests.get('https://reqres.in/api/users/22')
-        print(response.json())
+
         assert response.status_code == 404
         assert response.json() == {}
-        
+
+    def test_create_user(self):
+        payload = {
+            "name": "morpheus",
+            "job": "leader"
+        }
+        response = requests.post('https://reqres.in/api/users', json=payload)
+
+        assert response.status_code == 201
+        assert response.json()['name'] == payload['name']
