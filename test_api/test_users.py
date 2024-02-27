@@ -29,3 +29,13 @@ class TestUsers:
 
         assert response.status_code == 201
         assert response.json()['name'] == payload['name']
+
+    def test_put_update_user(self):
+        payload = {
+            "name": "morpheus",
+            "job": "zeon leader"
+        }
+        response = requests.put('https://reqres.in/api/users/2', json=payload)
+
+        assert response.status_code == 200
+        assert response.json()['job'] == payload['job']
