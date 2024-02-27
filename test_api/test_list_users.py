@@ -13,3 +13,9 @@ class TestUsers:
         f = response_json['data']
         assert response.status_code == 200
         assert f['email'] == 'charles.morris@reqres.in'
+
+    def test_single_user_not_found(self):
+        response = requests.get('https://reqres.in/api/users/22')
+        print(response.json())
+        assert response.status_code == 404
+        assert response.json() == {}
