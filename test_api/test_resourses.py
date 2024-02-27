@@ -16,3 +16,10 @@ class TestResources:
 
         assert response.status_code == 200
         assert ((response_json['data'])['id']) == 3
+
+    def test_single_resource_not_found(self):
+        response = requests.get('https://reqres.in/api/unknown/33')
+        response_json = response.json()
+
+        assert response.status_code == 404
+        assert response_json == {}
