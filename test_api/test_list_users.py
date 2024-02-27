@@ -19,3 +19,4 @@ class TestUsers:
         print(response.json())
         assert response.status_code == 404
         assert response.json() == {}
+        
