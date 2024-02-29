@@ -45,7 +45,11 @@ class TestUsers:
             "name": "morpheus",
             "job": "zeon president"
         }
-        response = requests.put('https://reqres.in/api/users/2', json=payload)
+        response = requests.patch('https://reqres.in/api/users/2', json=payload)
 
         assert response.status_code == 200
         assert response.json()['job'] == payload['job']
+
+    def test_delete_user(self):
+        response = requests.delete('https://reqres.in/api/users/2')
+        assert response.status_code == 204
