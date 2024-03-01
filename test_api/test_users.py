@@ -1,11 +1,14 @@
 import requests
 
+import Models.users_page
+import validator
+
 
 class TestUsers:
 
     def test_get_user_list(self):
         response = requests.get('https://reqres.in/api/users?page=2').json()
-        assert response['page'] >= 1
+        assert validator.validator_pydantic(response, Models.users_page.UsersList.Model)
 
     def test_get_single_user(self):
         response = requests.get('https://reqres.in/api/users/5')
