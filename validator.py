@@ -4,7 +4,7 @@ from pydantic import ValidationError
 
 def validator_pydantic(data, model):
     try:
-        model.update_forward_refs()
+        model.model_rebuild()
         validated_data = model(**data)
     except ValidationError as e:
         print(e)
